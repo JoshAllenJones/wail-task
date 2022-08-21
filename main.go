@@ -4,6 +4,8 @@ import (
 	"context"
 	"embed"
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -64,5 +66,22 @@ func (a *App) CreateTask(t task) string {
 	fmt.Print(t.Description)
 	fmt.Print(t.Title)
 	return fmt.Sprintf("Task %s", t.Title)
+}
+
+func (a *App) GetFileList(f string) []string  {
+	filesNames, err := os.ReadDir("projects")
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	fileList := []string{}
+
+
+	for _, file := range filesNames {
+		fmt.Println(file.Name())
+		fmt.Println(file.Name())
+		fileList = append(fileList, file.Name() )
+	}
+	return fileList
 }
 
