@@ -61,6 +61,8 @@ func (a *App) Greet(name string) string {
 }
 
 func (a *App) CreateTask(t task) string {
+	fmt.Print(t.Description)
+	fmt.Print(t.Title)
 	return fmt.Sprintf("Task %s", t.Title)
 }
 
