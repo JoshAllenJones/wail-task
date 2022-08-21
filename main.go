@@ -20,11 +20,11 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:            "wail-task",
-		Width:            1024,
-		Height:           768,
-		Assets:           assets,
-		OnStartup:        app.startup,
+		Title:     "wail-task",
+		Width:     1024,
+		Height:    768,
+		Assets:    assets,
+		OnStartup: app.startup,
 		Bind: []interface{}{
 			app,
 			&task{},
@@ -37,14 +37,13 @@ func main() {
 }
 
 type task struct {
-	Title string `json:"title"`
+	Title       string `json:"title"`
 	Description string `json:"description"`
 }
 
 type App struct {
 	ctx context.Context
 }
-
 
 // NewApp creates a new App application struct
 func NewApp() *App {
@@ -68,20 +67,18 @@ func (a *App) CreateTask(t task) string {
 	return fmt.Sprintf("Task %s", t.Title)
 }
 
-func (a *App) GetFileList(f string) []string  {
+func (a *App) GetFileList(f string) []string {
 	filesNames, err := os.ReadDir("projects")
 	if err != nil {
 		log.Fatal(err)
 	}
-	
-	fileList := []string{}
 
+	fileList := []string{}
 
 	for _, file := range filesNames {
 		fmt.Println(file.Name())
 		fmt.Println(file.Name())
-		fileList = append(fileList, file.Name() )
+		fileList = append(fileList, file.Name())
 	}
 	return fileList
 }
-
