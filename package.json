@@ -3,7 +3,9 @@
     "@emotion/react": "^11.10.0",
     "@mantine/core": "^5.2.3",
     "@mantine/dates": "^5.2.3",
+    "@mantine/form": "^5.2.3",
     "@mantine/hooks": "^5.2.3",
+    "@mantine/notifications": "^5.2.3",
     "@mantine/spotlight": "^5.2.3",
     "dayjs": "^1.11.5"
   }
