@@ -2,7 +2,10 @@ module changeme
 
 go 1.17
 
-require github.com/wailsapp/wails/v2 v2.0.0-beta.43
+require (
+	github.com/wailsapp/wails/v2 v2.0.0-beta.43
+	gorm.io/gorm v1.23.8
+)
 
 require (
 	github.com/bep/debounce v1.2.1 // indirect
@@ -19,7 +22,6 @@ require (
 	github.com/leaanthony/slicer v1.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/mattn/go-sqlite3 v1.14.15 // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/tkrajina/go-reflector v0.5.5 // indirect
@@ -30,8 +32,6 @@ require (
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
 	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gorm.io/driver/sqlite v1.3.6 // indirect
-	gorm.io/gorm v1.23.8 // indirect
 )
 
 // replace github.com/wailsapp/wails/v2 v2.0.0-beta.43 => /Users/joshuajones/go/pkg/mod/github.com/wailsapp/wails/v2@v2.0.0-beta.43
