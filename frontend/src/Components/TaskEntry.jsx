@@ -1,13 +1,23 @@
 import { Card, Grid, Paper, TextInput, Text, Button } from "@mantine/core";
 import taskListAtom from '../atoms/taskListAtom'
 import {useRecoilState} from 'recoil'
+import {useState} from 'react';
 
 function TaskEntry(props) {
 
     const [taskListState, setTaskListState] = useRecoilState(taskListAtom)
+    const [inputState, setInputState] = useState("")
   
+
+    let handleInputChange = (event) => {
+    }
+
     let handleEnter = (event) => {
+        setInputState(event.target.value)
+        console.log(inputState)
         if(event.key == 'Enter'){
+            event.preventDefault()
+            console.log(event.target.value)
             console.log('Wooh!')
         }
     }
@@ -24,7 +34,7 @@ function TaskEntry(props) {
         <Grid.Col span={10}>
           <Grid>
             <Grid.Col span={12}>
-              <TextInput sx={{input: {border: "None"}}}  onKeyDown={handleEnter} />
+              <TextInput sx={{input: {border: "none"}}}  onKeyDown={handleEnter} />
             </Grid.Col>
           </Grid>
         </Grid.Col>
