@@ -9,21 +9,25 @@ function TaskEntry(props) {
     const [inputState, setInputState] = useState("")
   
 
-    let handleInputChange = (event) => {
-    }
+
 
     let handleEnter = (event) => {
-        setInputState(event.target.value)
         console.log(inputState)
+        setInputState(event.target.value)
         if(event.key == 'Enter'){
             event.preventDefault()
-            console.log(event.target.value)
-            console.log('Wooh!')
-        }
-    }
+            setTaskListState((current) => [...current, inputState])
+            setInputState("")
+    }}
 
     let submitHandler = (event) => {
         console.log('WOAAasdasdSDASDASDO!')
+    }
+
+    let clickHandler = (evt) => {
+      evt.preventDefault()
+      setTaskListState((current) => [...current, inputState])
+
     }
     
   
@@ -34,12 +38,12 @@ function TaskEntry(props) {
         <Grid.Col span={10}>
           <Grid>
             <Grid.Col span={12}>
-              <TextInput sx={{input: {border: "none"}}}  onKeyDown={handleEnter} />
+              <TextInput sx={{input: {border: "none"}}} value={inputState} onChange={ (event) => setInputState(event.target.value)}  onKeyDown={handleEnter}/>
             </Grid.Col>
           </Grid>
         </Grid.Col>
         <Grid.Col span={2}>
-          <Button variant="gradient"  type="submit"  gradient={{ from: "indigo", to: "cyan" }} fullWidth>
+          <Button variant="gradient" onClick={clickHandler}  type="submit"  gradient={{ from: "indigo", to: "cyan" }} fullWidth>
             Submit
           </Button>
         </Grid.Col>
