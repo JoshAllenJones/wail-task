@@ -16,9 +16,14 @@ function TaskEntry(props) {
         setInputState(event.target.value)
         if(event.key == 'Enter'){
             event.preventDefault()
-            setTaskListState((current) => [...current, inputState])
-            setInputState("")
-    }}
+            if (event.target.value.trim().length !== 0){
+              setTaskListState((current) => [...current, inputState])
+              setInputState("")
+              
+            }
+          }
+        return false
+  }
 
     let submitHandler = (event) => {
         console.log('WOAAasdasdSDASDASDO!')
