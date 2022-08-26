@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/wailsapp/wails/v2 v2.0.0-beta.43
+	gorm.io/driver/sqlite v1.3.6
 	gorm.io/gorm v1.23.8
 )
 
@@ -22,6 +23,7 @@ require (
 	github.com/leaanthony/slicer v1.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/mattn/go-sqlite3 v1.14.15 // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/tkrajina/go-reflector v0.5.5 // indirect

@@ -1,28 +1,30 @@
 package main
 
 import (
+	"changeme/database"
 	"context"
 	"embed"
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/wailsapp/wails/v2"
-	"github.com/wailsapp/wails/v2/pkg/options"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+
+	"github.com/wailsapp/wails/v2"
+	"github.com/wailsapp/wails/v2/pkg/options"
 )
 
 //go:embed frontend/dist
 var assets embed.FS
-var db *gorm.DB
+
 
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
-
+	var err error
 	// Create application with options
-	err := wails.Run(&options.App{
+	err = wails.Run(&options.App{
 		Title:     "wail-task",
 		Width:     1024,
 		Height:    768,
@@ -33,13 +35,14 @@ func main() {
 			&task{},
 		},
 	})
-	if err != nil {
-		println("Error:", err.Error())
-	}
-	db, err := gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
+	database.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
 	if err != nil {
 		panic("Failed to connect to the database")
 	}
+	if err != nil {
+		println("Error:", err.Error())
+	}
+
 	
 }
 
@@ -75,7 +78,7 @@ func (a *App) CreateTask(t task) string {
 }
 
 func (a *App) CreateDb() {
-	db.AutoMigrate(&Project{})
+	database.DB.AutoMigrate(&Project{})
 }
 
 func (a *App) GetFileList(f string) []string {
