@@ -1,11 +1,10 @@
 package main
 
 import (
-	"changeme/database"
+	"changeme/models"
 	"context"
 	"embed"
 	"fmt"
-
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"gorm.io/driver/sqlite"
@@ -32,12 +31,12 @@ func main() {
 			&task{},
 		},
 	})
-	database.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
+	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
 	if err != nil {
 		panic("Failed to connect to the database")
 	}
+	err = models.DB.AutoMigrate(models.Project{}, models.MainBlock{}, models.SubBlock{}, models.LogBook{})
 	if err != nil {
-		println("Something wrong going here")
 		panic(err.Error())
 	}
 
@@ -74,6 +73,8 @@ func (a *App) CreateTask(t task) string {
 	fmt.Print(t.Title)
 	return fmt.Sprintf("Task %s", t.Title)
 }
+
+
 
 
 
