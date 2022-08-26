@@ -13,6 +13,7 @@ frontend/node_modules
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+task.db
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

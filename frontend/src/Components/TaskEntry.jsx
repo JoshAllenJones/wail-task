@@ -8,9 +8,6 @@ function TaskEntry(props) {
     const [taskListState, setTaskListState] = useRecoilState(taskListAtom)
     const [inputState, setInputState] = useState("")
   
-
-
-
     let handleEnter = (event) => {
         console.log(inputState)
         setInputState(event.target.value)

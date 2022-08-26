@@ -8,8 +8,8 @@ import (
 
 type Project struct {
 	gorm.Model
-	projectName string
-	description string
+	projectName string `gorm: "type:text"`
+	description string `gorm: "type:text"`
 	MainBlocks  []MainBlock
 }
 

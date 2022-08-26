@@ -9,10 +9,13 @@ import (
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 //go:embed frontend/dist
 var assets embed.FS
+var db *gorm.DB
 
 func main() {
 	// Create an instance of the app structure
@@ -30,10 +33,14 @@ func main() {
 			&task{},
 		},
 	})
-
 	if err != nil {
 		println("Error:", err.Error())
 	}
+	db, err := gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Failed to connect to the database")
+	}
+	
 }
 
 type task struct {
@@ -65,6 +72,10 @@ func (a *App) CreateTask(t task) string {
 	fmt.Print(t.Description)
 	fmt.Print(t.Title)
 	return fmt.Sprintf("Task %s", t.Title)
+}
+
+func (a *App) CreateDb() {
+	db.AutoMigrate(&Project{})
 }
 
 func (a *App) GetFileList(f string) []string {
