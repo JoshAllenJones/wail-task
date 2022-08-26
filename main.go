@@ -5,14 +5,11 @@ import (
 	"context"
 	"embed"
 	"fmt"
-	"log"
-	"os"
-
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 //go:embed frontend/dist
@@ -40,7 +37,8 @@ func main() {
 		panic("Failed to connect to the database")
 	}
 	if err != nil {
-		println("Error:", err.Error())
+		println("Something wrong going here")
+		panic(err.Error())
 	}
 
 	
@@ -77,22 +75,6 @@ func (a *App) CreateTask(t task) string {
 	return fmt.Sprintf("Task %s", t.Title)
 }
 
-func (a *App) CreateDb() {
-	database.DB.AutoMigrate(&Project{})
-}
 
-func (a *App) GetFileList(f string) []string {
-	filesNames, err := os.ReadDir("projects")
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	fileList := []string{}
 
-	for _, file := range filesNames {
-		fmt.Println(file.Name())
-		fmt.Println(file.Name())
-		fileList = append(fileList, file.Name())
-	}
-	return fileList
-}

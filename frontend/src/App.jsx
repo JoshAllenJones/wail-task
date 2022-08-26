@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import logo from "./assets/images/logo-universal.png";
 import "./App.css";
-import { GetFileList } from "../wailsjs/go/main/App";
 import TaskEntry from "./Components/TaskEntry";
-import { Grid, Card, Paper, Text, ScrollArea } from "@mantine/core";
+import { Grid, Card, Paper, Text, ScrollArea, Button } from "@mantine/core";
 import taskListAtom from "./atoms/taskListAtom";
 import { useRecoilState } from "recoil";
 
