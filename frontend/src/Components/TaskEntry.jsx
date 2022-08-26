@@ -1,12 +1,22 @@
 import { Card, Grid, Paper, TextInput, Text, Button } from "@mantine/core";
 import taskListAtom from '../atoms/taskListAtom'
 import {useRecoilState} from 'recoil'
+import {CreateTask} from '../../wailsjs/go/main/App.js'
+import {main} from '../../wailsjs/go/models.ts'
 import {useState} from 'react';
 
 function TaskEntry(props) {
 
     const [taskListState, setTaskListState] = useRecoilState(taskListAtom)
     const [inputState, setInputState] = useState("")
+    
+    let postTask = (taskTitle) => {
+      var newTask = new main.Task()
+      newTask.title = taskTitle
+      CreateTask(newTask).then((response)=> {
+        console.log(response)
+      })
+    }
   
     let handleEnter = (event) => {
         console.log(inputState)
@@ -15,6 +25,7 @@ function TaskEntry(props) {
             event.preventDefault()
             if (event.target.value.trim().length !== 0){
               setTaskListState((current) => [...current, inputState])
+              postTask(inputState)
               setInputState("")
               
             }
@@ -28,6 +39,7 @@ function TaskEntry(props) {
 
     let clickHandler = (evt) => {
       evt.preventDefault()
+      postTask(inputState)
       setTaskListState((current) => [...current, inputState])
 
     }

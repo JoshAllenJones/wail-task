@@ -1,11 +1,11 @@
 export namespace main {
 	
-	export class task {
+	export class Task {
 	    title: string;
 	    description: string;
 	
 	    static createFrom(source: any = {}) {
-	        return new task(source);
+	        return new Task(source);
 	    }
 	
 	    constructor(source: any = {}) {

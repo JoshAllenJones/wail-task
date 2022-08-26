@@ -28,7 +28,7 @@ func main() {
 		OnStartup: app.startup,
 		Bind: []interface{}{
 			app,
-			&task{},
+			&Task{},
 		},
 	})
 	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
@@ -39,11 +39,12 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+	
 
 	
 }
 
-type task struct {
+type Task struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 }
@@ -68,8 +69,7 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) CreateTask(t task) string {
-	fmt.Print(t.Description)
+func (a *App) CreateTask(t Task) string {
 	fmt.Print(t.Title)
 	return fmt.Sprintf("Task %s", t.Title)
 }
