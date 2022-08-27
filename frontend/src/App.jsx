@@ -19,7 +19,9 @@ function App() {
 
   return (
     <Grid className="root-grid-thing">
-      <Grid.Col span={2}></Grid.Col>
+      <Grid.Col span={2}>
+        
+      </Grid.Col>
       <Grid.Col span={10}>
         <Grid>
           <Grid.Col span={12}>

@@ -5,6 +5,7 @@ import (
 	"context"
 	"embed"
 	"fmt"
+
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"gorm.io/driver/sqlite"
@@ -49,6 +50,11 @@ type Task struct {
 	Description string `json:"description"`
 }
 
+type SubBlockForm struct {
+	Content string `json:"content"`
+	ParentId uint `json:"parentId"`
+}
+
 type App struct {
 	ctx context.Context
 }
@@ -73,6 +79,24 @@ func (a *App) CreateTask(t Task) string {
 	fmt.Print(t.Title)
 	return fmt.Sprintf("Task %s", t.Title)
 }
+
+
+type ProjectStruct struct {
+	Id uint `json:"id"`
+	Title string `json:"title"`
+}
+
+func (a *App) GetProjects() models.Project  {
+	var project models.Project
+	result := models.DB.Find(&project)
+	if (result.Error != nil){
+		panic(result.Error.Error())
+	}
+	return result
+	
+}
+
+
 
 
 
