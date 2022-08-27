@@ -81,18 +81,16 @@ func (a *App) CreateTask(t Task) string {
 }
 
 
-type ProjectStruct struct {
+type ProjectStructQuery struct {
 	Id uint `json:"id"`
 	Title string `json:"title"`
 }
 
-func (a *App) GetProjects() models.Project  {
-	var project models.Project
-	result := models.DB.Find(&project)
-	if (result.Error != nil){
-		panic(result.Error.Error())
-	}
-	return result
+
+func (a *App) GetProjects() []ProjectStructQuery {
+	var resultStruct []ProjectStructQuery
+	models.DB.Table("project").Scan(&resultStruct)
+	return resultStruct
 	
 }
 

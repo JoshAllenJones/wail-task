@@ -4,4 +4,6 @@ import {main} from '../models';
 
 export function CreateTask(arg1:main.Task):Promise<string>;
 
+export function GetProjects():Promise<main.ProjectStructQuery>;
+
 export function Greet(arg1:string):Promise<string>;
