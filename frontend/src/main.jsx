@@ -11,7 +11,9 @@ const root = createRoot(container)
 
 root.render(
         <RecoilRoot>
-            <MantineProvider>
+            <MantineProvider theme={{
+                    fontFamily: "iA Writer QuattroS"
+                    }}>
                 <App/>
 
             </MantineProvider>

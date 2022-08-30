@@ -10,19 +10,17 @@ const SideNav = () => {
 		GetProjects().then((result) => {
 			console.log('RESULT BELOW')
 			console.log(result)
+			setProjectList(result)
+			console.log(projectList)
 		})
 	}, [setProjectList])
 	
-
 	
 	
 	
 	
 	return(
-		<Box>
-			<span>Beep Boop</span>
-			
-		</Box>
+		<span>{projectList[0].title}</span>
 	)
 	
 }
