@@ -5,6 +5,7 @@ import TaskEntry from "./Components/TaskEntry";
 import { Grid, Card, Paper, Text, ScrollArea, Button } from "@mantine/core";
 import taskListAtom from "./atoms/taskListAtom";
 import { useRecoilState } from "recoil";
+import SideNav from './Components/SideNav'
 
 function App() {
   const [taskList, setTaskList] = useRecoilState(taskListAtom);
@@ -20,7 +21,7 @@ function App() {
   return (
     <Grid className="root-grid-thing">
       <Grid.Col span={2}>
-        
+        <SideNav />
       </Grid.Col>
       <Grid.Col span={10}>
         <Grid>

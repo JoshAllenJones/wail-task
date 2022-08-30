@@ -3,23 +3,28 @@ import { useState, useEffect } from "react";
 import {GetProjects} from '../../wailsjs/go/main/App'
 
 const SideNav = () => {
-	const [projectList, setProjectList] = useState(null)
+	const [projectList, setProjectList] = useState([])
 	
 	
 	useEffect(() => {
 		GetProjects().then((result) => {
+			console.log('RESULT BELOW')
 			console.log(result)
-			setProjectList(result)
 		})
-	})
+	}, [setProjectList])
 	
-	let NavItemList
+
+	
+	
+	
 	
 	return(
 		<Box>
-			
+			<span>Beep Boop</span>
 			
 		</Box>
 	)
 	
 }
+
+export default SideNav

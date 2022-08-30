@@ -15,7 +15,6 @@ import (
 //go:embed frontend/dist
 var assets embed.FS
 
-
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
@@ -39,10 +38,9 @@ func main() {
 	err = models.DB.AutoMigrate(models.Project{}, models.MainBlock{}, models.SubBlock{}, models.LogBook{})
 	if err != nil {
 		panic(err.Error())
-	}
-	
 
-	
+	}
+
 }
 
 type Task struct {
@@ -51,8 +49,8 @@ type Task struct {
 }
 
 type SubBlockForm struct {
-	Content string `json:"content"`
-	ParentId uint `json:"parentId"`
+	Content  string `json:"content"`
+	ParentId uint   `json:"parentId"`
 }
 
 type App struct {
@@ -80,24 +78,21 @@ func (a *App) CreateTask(t Task) string {
 	return fmt.Sprintf("Task %s", t.Title)
 }
 
-
 type ProjectStructQuery struct {
-	Id uint `json:"id"`
-	Title string `json:"title"`
+	Id          uint   `json:"id"`
+	ProjectName string `json:"title"`
 }
-
 
 func (a *App) GetProjects() []ProjectStructQuery {
-	var resultStruct []ProjectStructQuery
-	models.DB.Table("project").Scan(&resultStruct)
-	return resultStruct
-	
+	var resultList []ProjectStructQuery
+	var err error
+	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Failed to connect to the database")
+	}
+	fmt.Println("Beep boop getting hit")
+	println("Declared result struct")
+	// models.DB.Table("projects").Select("id", "project_name").Scan(&result)
+	models.DB.Table("projects").Select("id", "project_name").Find(&resultList)
+	return resultList
 }
-
-
-
-
-
-
-
-

@@ -35,12 +35,11 @@
   }
 
 
+body {
+      overscroll-behavior: none;
+  }
 
 
-.root-grid-thing {
-    height: 100vh;
-    width: 100vw;
-}
 
 .borderless-task-input {
     border: None;
