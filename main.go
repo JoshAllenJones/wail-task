@@ -105,6 +105,15 @@ func (a *App) GetProjects() []ProjectStructQuery {
 	return resultList
 }
 
-func (a *App) ClockIn(taskId string) {
+// func (a *App) GetTasks(projectId uint) {
+
+// }
+
+func (a *App) ClockIn(taskId uint) {
+	logRecord := models.LogBook{MainBlockId: taskId, LogIn: time.Now()}
+	result := models.DB.Create(&logRecord)
+	if (result.Error != nil){
+		panic(result.Error.Error())
+	}
 	fmt.Println("Look at this")
 }
