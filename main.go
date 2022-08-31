@@ -5,6 +5,7 @@ import (
 	"context"
 	"embed"
 	"fmt"
+	"time"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -83,6 +84,13 @@ type ProjectStructQuery struct {
 	ProjectName string `json:"title"`
 }
 
+type LogBookEntry struct {
+	Id uint `json:"id"`
+	LogIn time.Time `json:"LogIn"`
+	LogOut time.Time `json:"LogOut"`
+}
+
+
 func (a *App) GetProjects() []ProjectStructQuery {
 	var resultList []ProjectStructQuery
 	var err error
@@ -95,4 +103,8 @@ func (a *App) GetProjects() []ProjectStructQuery {
 	// models.DB.Table("projects").Select("id", "project_name").Scan(&result)
 	models.DB.Table("projects").Select("id", "project_name").Find(&resultList)
 	return resultList
+}
+
+func (a *App) ClockIn(taskId string) {
+	fmt.Println("Look at this")
 }

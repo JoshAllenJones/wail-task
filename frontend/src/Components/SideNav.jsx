@@ -14,13 +14,17 @@ const SideNav = () => {
 			console.log(projectList)
 		})
 	}, [setProjectList])
+
+	const ProjectNodes = () => projectList.map((item, i) => <NavLink label={item.title} />)
 	
 	
 	
 	
 	
 	return(
-		<span>{projectList[0].title}</span>
+		<Box>
+			<ProjectNodes />
+		</Box>
 	)
 	
 }
