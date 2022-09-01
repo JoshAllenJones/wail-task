@@ -1,7 +1,7 @@
 import { Card, Grid, Paper, TextInput, Text, Button } from "@mantine/core";
 import taskListAtom from '../atoms/taskListAtom'
 import {useRecoilState} from 'recoil'
-import {CreateTask} from '../../wailsjs/go/main/App.js'
+import {CreateMainBlock} from '../../wailsjs/go/main/App.js'
 import {main} from '../../wailsjs/go/models.ts'
 import {useState} from 'react';
 
@@ -13,7 +13,8 @@ function TaskEntry(props) {
     let postTask = (taskTitle) => {
       var newTask = new main.Task()
       newTask.title = taskTitle
-      CreateTask(newTask).then((response)=> {
+      newTask.projectId = 1
+      CreateMainBlock(newTask).then((response)=> {
         console.log(response)
       })
     }

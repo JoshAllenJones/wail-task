@@ -6,12 +6,16 @@ export function ClockIn(arg1) {
   return window['go']['main']['App']['ClockIn'](arg1);
 }
 
-export function CreateTask(arg1) {
-  return window['go']['main']['App']['CreateTask'](arg1);
+export function CreateMainBlock(arg1) {
+  return window['go']['main']['App']['CreateMainBlock'](arg1);
 }
 
 export function GetProjects() {
   return window['go']['main']['App']['GetProjects']();
+}
+
+export function GetTasks(arg1) {
+  return window['go']['main']['App']['GetTasks'](arg1);
 }
 
 export function Greet(arg1) {

@@ -45,8 +45,10 @@ func main() {
 }
 
 type Task struct {
+	MainBlockId uint `json:"mainBlockId"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
+	ProjectId uint `json:"projectId"`
 }
 
 type SubBlockForm struct {
@@ -74,9 +76,27 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) CreateTask(t Task) string {
+
+
+
+func (a *App) CreateMainBlock(t Task) []Task {
 	fmt.Print(t.Title)
-	return fmt.Sprintf("Task %s", t.Title)
+	var err error
+	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Failed to connect to the database")
+	}
+	newTask := models.MainBlock{Title: t.Title, Created: time.Now(), ProjectId: t.ProjectId}
+	result := models.DB.Create(&newTask)
+	if (result.Error != nil){
+		panic(result.Error.Error())
+	}
+	var taskObj []Task
+	allTaskResult := models.DB.Table("main_blocks").Where("project_id = ?", t.ProjectId).Find(&taskObj)
+	if (allTaskResult.Error != nil){
+		panic(allTaskResult.Error.Error())
+	}
+	return taskObj
 }
 
 type ProjectStructQuery struct {
@@ -103,6 +123,21 @@ func (a *App) GetProjects() []ProjectStructQuery {
 	// models.DB.Table("projects").Select("id", "project_name").Scan(&result)
 	models.DB.Table("projects").Select("id", "project_name").Find(&resultList)
 	return resultList
+}
+
+
+func (a *App) GetTasks(id uint) []Task {
+	var err error
+	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Failed to connect to the database")
+	}
+	var returnList []Task
+	result := models.DB.Table("main_blocks").Where("project_id = ?", id).Find(&returnList)
+	if (result.Error != nil){
+		panic(result.Error.Error())
+	}
+	return returnList
 }
 
 // func (a *App) GetTasks(projectId uint) {

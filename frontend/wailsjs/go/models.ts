@@ -1,8 +1,10 @@
 export namespace main {
 	
 	export class Task {
+	    mainBlockId: number;
 	    title: string;
 	    description: string;
+	    projectId: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new Task(source);
@@ -10,8 +12,10 @@ export namespace main {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.mainBlockId = source["mainBlockId"];
 	        this.title = source["title"];
 	        this.description = source["description"];
+	        this.projectId = source["projectId"];
 	    }
 	}
 	export class ProjectStructQuery {

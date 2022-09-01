@@ -1,8 +1,9 @@
 package models
 
 import (
-	"gorm.io/gorm"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
@@ -17,7 +18,10 @@ type Project struct {
 }
 
 type MainBlock struct {
-	gorm.Model
+	MainBlockId uint `gorm:"primaryKey"`
+	Created time.Time
+	Updated time.Time
+	Title  string `gorm:"type:text"`
 	Content    string `gorm:"type:text"`
 	ProjectId    uint
 	LogEntries []LogBook `gorm:"foreignKey:MainBlockId"`
@@ -25,7 +29,9 @@ type MainBlock struct {
 }
 
 type SubBlock struct {
-	gorm.Model
+	SubBlockId uint `gorm:"primaryKey"`
+	Created time.Time
+	Updated time.Time
 	Content   string `gorm:"type:text"`
 	MainBlockId uint
 }

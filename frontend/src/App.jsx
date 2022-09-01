@@ -5,12 +5,15 @@ import TaskEntry from "./Components/TaskEntry";
 import { Grid, Card, Paper, Text, ScrollArea, Button } from "@mantine/core";
 import taskListAtom from "./atoms/taskListAtom";
 import { useRecoilState } from "recoil";
+import { GetTasks } from "../../wailsjs/go/main/App.js";
 import SideNav from './Components/SideNav'
 
 function App() {
   const [taskList, setTaskList] = useRecoilState(taskListAtom);
 
-  const taskItems = taskList.map((item, i) => (
+
+
+  const taskItems =  taskList.map((item, i) => (
     <Grid.Col span={12}>
       <Paper shadow="xs" p="md">
         <Text key={i}>{item}</Text>
@@ -29,7 +32,6 @@ function App() {
             <TaskEntry />
           </Grid.Col>
         </Grid>
-
         <ScrollArea style={{height: "90vh"}}>
           <Grid>{taskItems}</Grid>
         </ScrollArea>
