@@ -47,7 +47,7 @@ function TaskEntry(props) {
     
   
     return (
-    <Paper shadow="xs" p="md" mb={3}>
+    <Paper shadow="xs" p="md" mb={20}>
     <form onSubmit={submitHandler}>
       <Grid>
         <Grid.Col span={10}>

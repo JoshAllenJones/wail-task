@@ -3,6 +3,7 @@ export namespace main {
 	export class Task {
 	    mainBlockId: number;
 	    title: string;
+	    created: string;
 	    description: string;
 	    projectId: number;
 	
@@ -14,6 +15,7 @@ export namespace main {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.mainBlockId = source["mainBlockId"];
 	        this.title = source["title"];
+	        this.created = source["created"];
 	        this.description = source["description"];
 	        this.projectId = source["projectId"];
 	    }

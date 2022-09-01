@@ -45,10 +45,11 @@ func main() {
 }
 
 type Task struct {
-	MainBlockId uint `json:"mainBlockId"`
+	MainBlockId uint   `json:"mainBlockId"`
 	Title       string `json:"title"`
+	Created     string `json:"created"`
 	Description string `json:"description"`
-	ProjectId uint `json:"projectId"`
+	ProjectId   uint   `json:"projectId"`
 }
 
 type SubBlockForm struct {
@@ -76,11 +77,7 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-
-
-
 func (a *App) CreateMainBlock(t Task) []Task {
-	fmt.Print(t.Title)
 	var err error
 	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
 	if err != nil {
@@ -88,12 +85,12 @@ func (a *App) CreateMainBlock(t Task) []Task {
 	}
 	newTask := models.MainBlock{Title: t.Title, Created: time.Now(), ProjectId: t.ProjectId}
 	result := models.DB.Create(&newTask)
-	if (result.Error != nil){
+	if result.Error != nil {
 		panic(result.Error.Error())
 	}
 	var taskObj []Task
 	allTaskResult := models.DB.Table("main_blocks").Where("project_id = ?", t.ProjectId).Find(&taskObj)
-	if (allTaskResult.Error != nil){
+	if allTaskResult.Error != nil {
 		panic(allTaskResult.Error.Error())
 	}
 	return taskObj
@@ -105,11 +102,10 @@ type ProjectStructQuery struct {
 }
 
 type LogBookEntry struct {
-	Id uint `json:"id"`
-	LogIn time.Time `json:"LogIn"`
+	Id     uint      `json:"id"`
+	LogIn  time.Time `json:"LogIn"`
 	LogOut time.Time `json:"LogOut"`
 }
-
 
 func (a *App) GetProjects() []ProjectStructQuery {
 	var resultList []ProjectStructQuery
@@ -125,7 +121,6 @@ func (a *App) GetProjects() []ProjectStructQuery {
 	return resultList
 }
 
-
 func (a *App) GetTasks(id uint) []Task {
 	var err error
 	models.DB, err = gorm.Open(sqlite.Open("task.db"), &gorm.Config{})
@@ -133,21 +128,17 @@ func (a *App) GetTasks(id uint) []Task {
 		panic("Failed to connect to the database")
 	}
 	var returnList []Task
-	result := models.DB.Table("main_blocks").Where("project_id = ?", id).Find(&returnList)
-	if (result.Error != nil){
+	result := models.DB.Table("main_blocks").Where("project_id = ?", id).Order("created asc").Find(&returnList)
+	if result.Error != nil {
 		panic(result.Error.Error())
 	}
 	return returnList
 }
 
-// func (a *App) GetTasks(projectId uint) {
-
-// }
-
 func (a *App) ClockIn(taskId uint) {
 	logRecord := models.LogBook{MainBlockId: taskId, LogIn: time.Now()}
 	result := models.DB.Create(&logRecord)
-	if (result.Error != nil){
+	if result.Error != nil {
 		panic(result.Error.Error())
 	}
 	fmt.Println("Look at this")

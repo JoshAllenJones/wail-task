@@ -15,7 +15,7 @@ const SideNav = () => {
 		})
 	}, [setProjectList])
 
-	const ProjectNodes = () => projectList.map((item, i) => <NavLink label={item.title} />)
+	const ProjectNodes = () => projectList.map((item, i) => <NavLink key={i} label={item.title} />)
 	
 	
 	

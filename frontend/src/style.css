@@ -37,10 +37,16 @@
 
 body {
       overscroll-behavior: none;
+      background-color: rgb(215, 215, 215);
   }
 
 
 
 .borderless-task-input {
     border: None;
+}
+
+.root-grid-thing {
+  height: 100vh;
+  
 }
