@@ -4,6 +4,7 @@ import {useRecoilState} from 'recoil'
 import {CreateMainBlock} from '../../wailsjs/go/main/App.js'
 import {main} from '../../wailsjs/go/models.ts'
 import {useState} from 'react';
+import '../rte.css'
 
 function TaskEntry(props) {
 
