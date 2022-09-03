@@ -48,22 +48,18 @@ function TaskEntry(props) {
     
   
     return (
-    <Paper shadow="xs" p="md" mb={20}>
+    <Paper shadow="xs" p="md" >
     <form onSubmit={submitHandler}>
-      <Grid>
-        <Grid.Col span={10}>
-          <Grid>
-            <Grid.Col span={12}>
-              <TextInput sx={{input: {border: "none"}}} value={inputState} onChange={ (event) => setInputState(event.target.value)}  onKeyDown={handleEnter}/>
-            </Grid.Col>
-          </Grid>
-        </Grid.Col>
-        <Grid.Col span={2}>
+        <Grid>
+          <Grid.Col span={10}>
+            <TextInput sx={{input: {border: "none"}}} value={inputState} onChange={ (event) => setInputState(event.target.value)}  onKeyDown={handleEnter}/>
+          </Grid.Col>
+          <Grid.Col span={2}>
           <Button variant="gradient" onClick={clickHandler}  type="submit"  gradient={{ from: "indigo", to: "cyan" }} fullWidth>
-            Submit
-          </Button>
-        </Grid.Col>
-      </Grid>
+              Submit
+            </Button>
+          </Grid.Col>
+        </Grid>
       </form>
     </Paper>
   );

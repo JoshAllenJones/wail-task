@@ -5,7 +5,7 @@ import "./App.css";
 import TaskEntry from "./Components/TaskEntry";
 import TaskCard from "./Components/TaskCard"
 
-import { Grid, Card, Paper, Text, ScrollArea, Button, Container } from "@mantine/core";
+import { Grid, Card, Paper, Text, ScrollArea, Button, Stack } from "@mantine/core";
 import taskListAtom from "./atoms/taskListAtom";
 import currentProjectAtom from "./atoms/currentProjectAtom";
 import { useRecoilState } from "recoil";
@@ -34,14 +34,10 @@ function App() {
         <SideNav />
       </Grid.Col>
       <Grid.Col span={10}>
-        <Grid>
-          <Grid.Col span={12}>
-            <TaskEntry />
-          </Grid.Col>
-        </Grid>
-        <ScrollArea>
-          <Grid>{taskItems}</Grid>
-        </ScrollArea>
+        <Stack>
+          <TaskEntry />
+          {taskItems}
+        </Stack>
       </Grid.Col>
     </Grid>
 
