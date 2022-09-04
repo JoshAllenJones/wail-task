@@ -48,6 +48,7 @@ type Task struct {
 	MainBlockId uint   `json:"mainBlockId"`
 	Title       string `json:"title"`
 	Created     string `json:"created"`
+	CreatedFmt string `json:"createdFmt"`
 	Description string `json:"description"`
 	ProjectId   uint   `json:"projectId"`
 }
@@ -83,7 +84,7 @@ func (a *App) CreateMainBlock(t Task) []Task {
 	if err != nil {
 		panic("Failed to connect to the database")
 	}
-	newTask := models.MainBlock{Title: t.Title, Created: time.Now(), ProjectId: t.ProjectId}
+	newTask := models.MainBlock{Title: t.Title, Created: time.Now(), ProjectId: t.ProjectId, CreatedFmt: time.Now().Format(time.RFC822) }
 	result := models.DB.Create(&newTask)
 	if result.Error != nil {
 		panic(result.Error.Error())
@@ -93,6 +94,7 @@ func (a *App) CreateMainBlock(t Task) []Task {
 	if allTaskResult.Error != nil {
 		panic(allTaskResult.Error.Error())
 	}
+
 	return taskObj
 }
 
@@ -132,6 +134,7 @@ func (a *App) GetTasks(id uint) []Task {
 	if result.Error != nil {
 		panic(result.Error.Error())
 	}
+
 	return returnList
 }
 

@@ -20,7 +20,9 @@ type Project struct {
 type MainBlock struct {
 	MainBlockId uint `gorm:"primaryKey"`
 	Created time.Time
+	CreatedFmt string `gorm:"type:text"`
 	Updated time.Time
+	UpdatedFmt string `gorm:"type:text"`
 	Title  string `gorm:"type:text"`
 	Content    string `gorm:"type:text"`
 	ProjectId    uint
@@ -31,7 +33,9 @@ type MainBlock struct {
 type SubBlock struct {
 	SubBlockId uint `gorm:"primaryKey"`
 	Created time.Time
+	CreatedFmt string `gorm:"type:text"`
 	Updated time.Time
+	UpdatedFmt string `gorm:"type:text"`
 	Content   string `gorm:"type:text"`
 	MainBlockId uint
 }
