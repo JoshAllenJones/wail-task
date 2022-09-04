@@ -1,58 +1,70 @@
-import {Grid, Paper, Text, Container, createStyles} from '@mantine/core'
-import {RichTextEditor} from '@mantine/rte'
+import {Grid, Paper, Text, Container, createStyles, Title, Group, ActionIcon} from '@mantine/core'
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 
-const useStyles = createStyles((theme) => ({
-    root: {
-        border: "none"
-    },
-    toolbar: {
-        border: "none",
-        paddingLeft: 0,
-        paddingRight: 0,
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+import { Pencil2Icon } from '@radix-ui/react-icons'
+
+// const useStyles = createStyles((theme) => ({
+//     root: {
+//         border: "none"
+//     },
+//     toolbar: {
+//         border: "none",
+//         paddingLeft: 0,
+//         paddingRight: 0,
         
-    },
-    toolbarGroup: {
-        marginLeft: 0,
-        marginRight: 0
-    },
-    toolbarControl: {
-        border: "none"
-    },
-    toolbarInner: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    }
-}))
+//     },
+//     toolbarGroup: {
+//         marginLeft: 0,
+//         marginRight: 0
+//     },
+//     toolbarControl: {
+//         border: "none"
+//     },
+//     toolbarInner: {
+//         display: 'flex',
+//         justifyContent: 'space-between'
+//     }
+// }))
 
 
 
 
 const BlockCard = (props) => {
-    const {classes} = useStyles()
     const [showEditor, setShowEditor] = useState(false)
+    const [taskContent, setTaskContent] = useState("ay yeah yeah")
+
+    let toggleEditor = () => {
+        setShowEditor(!showEditor)
+        // Save on toggle here? Also consider saving on a timer?
+    }
+
+    
+
 
     let DescriptionSection = () => {
         if (showEditor) {
             return (
-                <RichTextEditor classNames={{
-                    root: classes.root,
-                    toolbar: classes.toolbar,
-                    toolbarGroup: classes.toolbarGroup,
-                    toolbarInner: classes.toolbarInner
-
-                }} />
+                <ReactQuill key={props.id} defaultValue={taskContent}  />
             )
         } else {
             return (
-                <Text>Here is the task description</Text>
+                <ReactMarkdown />
             )
         }
     }
 
     return (
             <Paper shadow="md" p="xl">
-                <Text>{props.title}</Text>
+                <Group position="apart">
+                    <Title size="h4">{props.title}</Title>
+                    <ActionIcon size="lg" onClick={toggleEditor} color="indigo" >
+                        <Pencil2Icon height={18} width={18} />
+                    </ActionIcon>
+                </Group>
                 <DescriptionSection />
             </Paper>
 

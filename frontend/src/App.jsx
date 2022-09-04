@@ -3,7 +3,7 @@ import logo from "./assets/images/logo-universal.png";
 import "./App.css";
 
 import TaskEntry from "./Components/TaskEntry";
-import TaskCard from "./Components/TaskCard"
+import BlockCard from "./Components/TaskCard"
 
 import { Grid, Card, Paper, Text, ScrollArea, Button, Stack } from "@mantine/core";
 import taskListAtom from "./atoms/taskListAtom";
@@ -24,7 +24,7 @@ function App() {
   }, [])
 
   const taskItems =  taskList.map((item) => (
-    <TaskCard {...item} />
+    <BlockCard {...item} key={item.id} />
   ));
 
   return (
