@@ -89,7 +89,7 @@ func (a *App) CreateMainBlock(t Task) []Task {
 		panic(result.Error.Error())
 	}
 	var taskObj []Task
-	allTaskResult := models.DB.Table("main_blocks").Where("project_id = ?", t.ProjectId).Find(&taskObj)
+	allTaskResult := models.DB.Table("main_blocks").Where("project_id = ?", t.ProjectId).Order("created desc").Find(&taskObj)
 	if allTaskResult.Error != nil {
 		panic(allTaskResult.Error.Error())
 	}
@@ -128,7 +128,7 @@ func (a *App) GetTasks(id uint) []Task {
 		panic("Failed to connect to the database")
 	}
 	var returnList []Task
-	result := models.DB.Table("main_blocks").Where("project_id = ?", id).Order("created asc").Find(&returnList)
+	result := models.DB.Table("main_blocks").Where("project_id = ?", id).Order("created desc").Find(&returnList)
 	if result.Error != nil {
 		panic(result.Error.Error())
 	}

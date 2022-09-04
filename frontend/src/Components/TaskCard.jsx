@@ -1,4 +1,6 @@
-import {Grid, Paper, Text, Container, createStyles, Title, Group, ActionIcon} from '@mantine/core'
+import {Grid, Paper, Textarea, Container, Title,
+     Group, ActionIcon, createStyles, Text} from '@mantine/core'
+import { RichTextEditor } from '@mantine/rte';
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 
@@ -6,6 +8,14 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 import { Pencil2Icon } from '@radix-ui/react-icons'
+
+const useStyles = createStyles((theme) => ({
+    input: {
+        border: "none",
+        paddingLeft: 0,
+        paddingRight: 0
+    }
+}))
 
 // const useStyles = createStyles((theme) => ({
 //     root: {
@@ -34,6 +44,7 @@ import { Pencil2Icon } from '@radix-ui/react-icons'
 
 
 const BlockCard = (props) => {
+    const {classes} = useStyles()
     const [showEditor, setShowEditor] = useState(false)
     const [taskContent, setTaskContent] = useState("ay yeah yeah")
 
@@ -45,27 +56,22 @@ const BlockCard = (props) => {
     
 
 
-    let DescriptionSection = () => {
-        if (showEditor) {
-            return (
-                <ReactQuill key={props.id} defaultValue={taskContent}  />
-            )
-        } else {
-            return (
-                <ReactMarkdown />
-            )
-        }
+
+
+
+    let handleTextArea = (event) => {
+        setTaskContent(event.target.value)
     }
 
     return (
-            <Paper shadow="md" p="xl">
+            <Paper shadow="md" radius="md" p="xl">
                 <Group position="apart">
                     <Title size="h4">{props.title}</Title>
-                    <ActionIcon size="lg" onClick={toggleEditor} color="indigo" >
-                        <Pencil2Icon height={18} width={18} />
-                    </ActionIcon>
+                    <Text>{props.created}</Text>
                 </Group>
-                <DescriptionSection />
+                <Textarea classNames={{
+                    input: classes.input
+                }} onChange={handleTextArea} autosize value={taskContent} />            
             </Paper>
 
     )

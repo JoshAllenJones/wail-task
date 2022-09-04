@@ -9,10 +9,11 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
-    "@mantine/core": "^5.2.4",
+    "@mantine/core": "^5.2.5",
     "@mantine/dates": "^5.2.3",
-    "@mantine/hooks": "^5.2.4",
+    "@mantine/hooks": "^5.2.5",
     "@mantine/notifications": "^5.2.3",
+    "@mantine/rte": "^5.2.5",
     "@mantine/spotlight": "^5.2.3",
     "@radix-ui/react-icons": "^1.1.1",
     "dayjs": "^1.11.5",

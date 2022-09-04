@@ -23,7 +23,7 @@ function App() {
     })
   }, [])
 
-  const taskItems =  taskList.map((item) => (
+  const TaskItems =  () => taskList.map((item) => (
     <BlockCard {...item} key={item.id} />
   ));
 
@@ -36,7 +36,7 @@ function App() {
       <Grid.Col span={10}>
         <Stack>
           <TaskEntry />
-          {taskItems}
+          <TaskItems />
         </Stack>
       </Grid.Col>
     </Grid>

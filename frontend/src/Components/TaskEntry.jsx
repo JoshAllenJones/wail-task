@@ -16,7 +16,7 @@ function TaskEntry(props) {
       newTask.title = taskTitle
       newTask.projectId = 1
       CreateMainBlock(newTask).then((response)=> {
-        console.log(response)
+        setTaskListState(response)
       })
     }
   
@@ -48,7 +48,7 @@ function TaskEntry(props) {
     
   
     return (
-    <Paper shadow="xs" p="md" >
+    <Paper shadow="xs" radius="md" p="md" >
     <form onSubmit={submitHandler}>
         <Grid>
           <Grid.Col span={10}>
