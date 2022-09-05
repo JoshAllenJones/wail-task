@@ -40,6 +40,12 @@ type SubBlock struct {
 	MainBlockId uint
 }
 
+type Status struct {
+	StatusId uint `gorm:"primaryKey"`
+	IsDoneStatus bool `gorm:"type:bool"`
+	StatusTitle string `gorm:"type:text"`
+}
+
 type LogBook struct {
 	gorm.Model
 	LogIn     time.Time

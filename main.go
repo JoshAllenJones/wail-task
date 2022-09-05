@@ -98,6 +98,7 @@ func (a *App) CreateMainBlock(t Task) []Task {
 	return taskObj
 }
 
+
 type ProjectStructQuery struct {
 	Id          uint   `json:"id"`
 	ProjectName string `json:"title"`
