@@ -11,3 +11,5 @@ export function GetProjects():Promise<Array<main.ProjectStructQuery>>;
 export function GetTasks(arg1:number):Promise<Array<main.Task>>;
 
 export function Greet(arg1:string):Promise<string>;
+
+export function UpdateTask(arg1:main.Task):void;
