@@ -48,7 +48,7 @@ type Task struct {
 	MainBlockId uint   `json:"mainBlockId"`
 	Title       string `json:"title"`
 	Content     string `json:"content"`
-	Created     string `json:"created"`
+	Created     time.Time `json:"created"`
 	CreatedFmt  string `json:"createdFmt"`
 	Description string `json:"description"`
 	ProjectId   uint   `json:"projectId"`
@@ -149,6 +149,7 @@ func (a *App) GetTasks(id uint) []Task {
 	if result.Error != nil {
 		panic(result.Error.Error())
 	}
+
 
 	return returnList
 }
