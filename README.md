@@ -1,5 +1,8 @@
 # README
 
+Developing an app to learn GoLang
+
+
 ## About
 
 This is the official Wails React template.
