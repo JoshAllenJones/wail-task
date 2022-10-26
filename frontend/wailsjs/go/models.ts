@@ -1,5 +1,19 @@
 export namespace main {
 	
+	export class ProjectStructQuery {
+	    id: number;
+	    title: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new ProjectStructQuery(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.id = source["id"];
+	        this.title = source["title"];
+	    }
+	}
 	export class Task {
 	    mainBlockId: number;
 	    title: string;
@@ -42,20 +56,6 @@ export namespace main {
 		    }
 		    return a;
 		}
-	}
-	export class ProjectStructQuery {
-	    id: number;
-	    title: string;
-	
-	    static createFrom(source: any = {}) {
-	        return new ProjectStructQuery(source);
-	    }
-	
-	    constructor(source: any = {}) {
-	        if ('string' === typeof source) source = JSON.parse(source);
-	        this.id = source["id"];
-	        this.title = source["title"];
-	    }
 	}
 
 }
